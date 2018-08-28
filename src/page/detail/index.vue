@@ -1,7 +1,7 @@
 <template>
     <div class="row" style="text-align:left;">
         <!-- 导航目录开始 -->
-        <div class="col-md-3 col-sm-3 v-note-wrapper markdown-body" style="padding:0px;" v-show="navigationShow">
+        <div class="col-md-3 col-sm-3 v-note-wrapper markdown-body" style="padding:0px;z-index:0;" v-show="navigationShow">
             <div class="v-note-panel shadow">
                 <div class="v-note-navigation-wrapper shadow" style="width:100%">
                     <div class="v-note-navigation-title">

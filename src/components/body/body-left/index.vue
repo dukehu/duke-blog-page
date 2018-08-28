@@ -1,7 +1,7 @@
 <template>
     <div class="col-md-4 col-sm-3">
-        <body-left-panel :datas="datas1" :panel-name="panelName1"></body-left-panel>
-        <body-left-panel :datas="datas2" :panel-name="panelName2"></body-left-panel>
+        <body-left-panel :datas="latestRecommendedArticles" :panpel-type="latestRecommendedArticlesPanelType" :panel-name="latestRecommendedArticlesPanelName"></body-left-panel>
+        <body-left-panel :datas="friendlyLink" :panel-name="friendlyLinkPanelName"></body-left-panel>
     </div>
 </template>
 
@@ -11,23 +11,28 @@ export default {
      components:{bodyLeftPanel},
      data(){
          return {
-             datas1:[
-                 {id: '1', content: '茫茫人海之中我的女人'},
-                 {id: '2', content: '茫茫人海之中我的女人'},
-                 {id: '3', content: '茫茫人海之中我的女人'},
-                 {id: '4', content: '茫茫人海之中我的女人'},
-                 {id: '5', content: '茫茫人海之中我的女人'}
+             latestRecommendedArticles:[],
+             latestRecommendedArticlesPanelName: '最新推荐',
+             latestRecommendedArticlesPanelType: '1',
+             friendlyLink:[
+                 {id: '1', title: '我思故我在', url: ''},
+                 {id: '2', title: 'Duke`s blog', url: ''},
+                 {id: '3', title: 'Duke`s blog', url: ''},
+                 {id: '4', title: 'Duke`s blog', url: ''},
+                 {id: '5', title: 'Duke`s blog', url: ''}
              ],
-             panelName1: '最新推荐',
-             datas2:[
-                 {id: '1', content: 'Duke`s blog'},
-                 {id: '2', content: 'Duke`s blog'},
-                 {id: '3', content: 'Duke`s blog'},
-                 {id: '4', content: 'Duke`s blog'},
-                 {id: '5', content: 'Duke`s blog'}
-             ],
-             panelName2: '友情链接'
+             friendlyLinkPanelName: '友情链接'
          }
+     },
+     methods: {
+         getLatestRecommendedArticles() {
+            this.$axios('get','/api/blog/nologin/latest_articles').then(data => {
+                this.latestRecommendedArticles = data.data;
+            })
+         }
+     },
+     created() {
+        this.getLatestRecommendedArticles();
      }
 }
 </script>

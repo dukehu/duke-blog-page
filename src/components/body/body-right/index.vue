@@ -1,20 +1,23 @@
 <template>
     <div class="col-md-8 col-sm-3">
         <div style="text-align:left">
-            <div v-for="article in articles" v-bind:key="article.id" class="panel panel-default">
-                <div class="panel-heading" @click="detail(article.id)">{{article.title}}</div>
+            <div v-for="article in pageInfo.list" v-bind:key="article.id" class="panel panel-default">
+                <div style="cursor:pointer" :title="article.title" class="panel-heading" @click="detail(article.id)">{{article.title}}</div>
                 <div class="panel-body">
                     {{article.summary}}
                 </div>
                 <div class="panel-footer">
-                    <span class="glyphicon glyphicon-time"></span> {{article.publishDate}}
-                    <span class="glyphicon glyphicon-tags"></span> idea jreble
-                    <span class="glyphicon glyphicon-eye-open"></span> 4276次浏览
+                    <span class="glyphicon glyphicon-time"></span> 
+                    {{article.publishDate}} &nbsp;&nbsp;
+                    <span v-show="article.labelVMS" class="glyphicon glyphicon-tags"></span> 
+                    <a style="cursor: pointer; text-decoration: none" v-for="label in article.labelVMS" :key="label.id">{{label.name}} &nbsp;&nbsp;</a>
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                    {{article.articleViews}}次浏览
                 </div>
             </div>
             <ul class="pager">
-                <li class="previous"><a href="#">&larr; Previous</a></li>
-                <li class="next"><a href="#">Next &rarr;</a></li>
+                <li style="cursor:pointer" class="previous" :class="pageInfo.hasPreviousPage ? '' : 'disabled'" @click="previous"><a>&larr; Previous</a></li>
+                <li style="cursor:pointer" class="next" :class="pageInfo.hasNextPage ? '' : 'disabled'" @click="next"><a>Next &rarr;</a></li>
             </ul>
         </div>
     </div>
@@ -24,15 +27,13 @@
 export default {
     data(){
         return{
-            articles: [],
-            blogTotal:0,
-            pageSize:20,
+            pageInfo: {},
+            pageSize:10,
             currentPage:1,
         }
     },
     created() {
         this.getList();
-        console.log(this.articles)
     },
     methods:{
         getList(){
@@ -40,17 +41,28 @@ export default {
                 page:this.currentPage,
                 size:this.pageSize,
             }).then(data => {
-                console.log("!!!!!!!!!!!!!!!" + data.data.list)
-                this.articles = data.data.list;
-                this.blogTotal = data.data.total;
+                this.pageInfo = data.data;
             })
         },
         detail(id) {
             // 去详情页，也就是跳转一个路由
-            console.log("@@@@@@@@@@" + id);
             this.$router.push({
                 path: `/detail/${id}`,
             })
+        },
+        previous() {
+            if(this.currentPage === 1) {
+                return;
+            }
+            this.currentPage = this.currentPage - 1;
+            this.getList();
+        },
+        next() {
+            if(this.currentPage === this.pageInfo.pages) {
+                return;
+            }
+            this.currentPage = this.currentPage + 1;
+            this.getList();
         }
     }
 }

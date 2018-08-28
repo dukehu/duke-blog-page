@@ -8,12 +8,6 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="lastname" class="col-sm-1 control-label">姓</label>
-                <div class="col-sm-11">
-                    <input type="text" class="form-control" id="lastname" placeholder="请输入姓">
-                </div>
-            </div>
-            <div class="form-group">
                 <div class="col-sm-11" style="text-align:left">
                     <label for="lastname" class="col-sm-1 control-label">标 签</label>
                     <label v-for="label in labels" v-bind:key="label.id" class="checkbox-inline">
@@ -23,6 +17,11 @@
             </div>
         </form>
         <mavon-editor style="height: 100%" @save="save" @imgAdd="imgAdd" ref="md" :ishljs="true"/>
+        <div class="form-group" style="margin-top:15px;float:right">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">发布</button>
+            </div>
+        </div>
     </div>
 </template>
 

@@ -2,13 +2,13 @@
     <div class="col-sm-3 col-md-9" style="float:right; padding-top:200px;">
         <form class="form-horizontal" role="form">
             <div class="form-group">
-                <label for="firstname" class="col-sm-2 control-label">名字</label>
+                <label for="firstname" class="col-sm-2 control-label">账号</label>
                 <div class="col-sm-4">
                     <input type="text" class="form-control" id="firstname" placeholder="请输入名字">
                 </div>
             </div>
             <div class="form-group">
-                <label for="lastname" class="col-sm-2 control-label">姓</label>
+                <label for="lastname" class="col-sm-2 control-label">密码</label>
                 <div class="col-sm-4">
                     <input type="text" class="form-control" id="lastname" placeholder="请输入姓">
                 </div>
