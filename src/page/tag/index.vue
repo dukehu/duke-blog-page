@@ -1,62 +1,40 @@
 <template>
-    <hzqing-vue-timeline 
-        timelineColor="#FFF"  
-        timeContentColor="darkgray"
-        :dataList="data"
-        >
-    </hzqing-vue-timeline>
+    <div class="panel panel-default" style="padding: 15px 0;">
+        <span style="font-size:2.2em; padding:45px;">2018年</span>
+        <ul style="text-align:left; font-size:1.2em">
+            <li style="cursor:pointer; padding:5px;" 
+                :title="data.title" 
+                v-for="data in datas" 
+                v-bind:key="data.id" >
+                <a @click="toDetail(data.id)" style="color: #337ab7;">{{data.title}}</a>
+            </li>
+        </ul>
+        <div v-show="datas.length <= 0" style="height:200px;padding: 80px 0;">暂无数据</div>
+    </div>
 </template>
 
 <script>
 export default {
     data() {
         return {
-             data: [
-                {
-                    time: 1522372393000,
-                    img: 'static/touxiang.jpeg',
-                    title: 'hzqing.com',
-                    content: '这是衡钊清的个人博客'
-                },
-                {
-                    time: '2018-03-30 14:36:35',
-                    img: 'static/one.jpeg',
-                    title: '这是一个简单的vue时间轴插件',
-                    content: '这是一个简单的vue时间轴插件，使用非常的方便'
-                },
-                {
-                    time: '2018-02-16 14:36:35',
-                    img: 'static/one.jpeg',
-                    title: '这是一个简单的vue时间轴插件',
-                    content: '这是一个简单的vue时间轴插件，使用非常的方便'
-                },
-                {
-                    time: '2018-03-18 14:36:35',
-                    img: 'static/one.jpeg',
-                    title: '这是一个简单的vue时间轴插件',
-                    content: '这是一个简单的vue时间轴插件，使用非常的方便'
-                },
-                {
-                    time: '2018-03-12 14:36:35',
-                    img: 'static/one.jpeg',
-                    title: '这是一个简单的vue时间轴插件',
-                    content: '这是一个简单的vue时间轴插件，使用非常的方便'
-                },
-                {
-                    time: '2017-03-12 14:36:35',
-                    img: 'static/one.jpeg',
-                    title: '这是一个简单的vue时间轴插件',
-                    content: '这是一个简单的vue时间轴插件，使用非常的方便'
-                },
-                {
-                    time: 1522372393000,
-                    img: 'static/three.jpg',
-                    title: '努力奋斗',
-                    content: '当你发现你的才华撑不起野心时，就请安静下来学习吧~~~'
-                }
-            ]
+            datas:[]
         }
-    }
+    },
+    methods: {
+         getLatestRecommendedArticles() {
+            this.$axios('get','/api/blog/nologin/archive_query').then(data => {
+                this.datas = data.data;
+            })
+         },
+         toDetail(id) {
+             this.$router.push({
+                path: `/articles/tags/${id}`,
+             })
+         }
+     },
+     created() {
+        this.getLatestRecommendedArticles();
+     }
 }
 </script>
 

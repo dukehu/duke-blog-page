@@ -46,7 +46,7 @@ export default {
         }
     },
     created(){
-      this.$axios('get', "/api/blog/blog_label").then(data => {
+      this.$axios('get', "/api/blog/nologin/blog_label").then(data => {
           this.labels = data.data;
       })
     }

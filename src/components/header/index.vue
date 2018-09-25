@@ -1,6 +1,6 @@
 <template>
     <div>
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background:white">
             <div class="container-fluid"> 
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -26,7 +26,7 @@
                 </div>
                 <a href="https://github.com/dukehu" target="_blank">
                         <img style="position: absolute; top: 0; left: 0; border: 0;" 
-                            src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png" 
+                            src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"
                             alt="Fork me on GitHub">
                     </a>
             </div>
@@ -41,7 +41,7 @@ export default {
             navbars: [
                 {id: 'index', name: '首页', icon: 'glyphicon glyphicon-home', router: '/'},
                 {id: 'archives', name: '归档', icon: 'glyphicon glyphicon-folder-open', router: '/tags'},
-                {id: 'tags', name: '标签', icon: 'glyphicon glyphicon-tags', router: '/'},
+                {id: 'tags', name: '标签', icon: 'glyphicon glyphicon-tags', router: '/labels'},
                 {id: 'about', name: '关于我', icon: 'glyphicon glyphicon-user', router: '/about'}, 
             ]
         }

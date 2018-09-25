@@ -2,8 +2,10 @@
   <div id="app">
     <!-- 页面的header部分 -->
     <header-page id="headerPage"></header-page>
-    <div class="container" style="margin-bottom:20px;">
-      <router-view/>
+    <div class="container">
+      <body-page>
+          <router-view/>
+      </body-page>
     </div>
     <footer-page></footer-page>
   </div>
@@ -25,11 +27,17 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   padding-top: 70px;
+}
+body {
+  background-color: #ebebeb;
+}
+pre {
+    background-color:  #1d1f21;
+    color: grey;
 }
 </style>

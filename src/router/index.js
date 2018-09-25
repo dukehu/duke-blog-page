@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Detail from  '@/page/detail/index.vue';
+import Article from  '@/page/detail/index.vue';
 import Edit from  '@/page/edit/index.vue';
 import Login from  '@/page/login/index.vue';
 import About from  '@/page/about-me/index.vue';
 import Tag from  '@/page/tag/index.vue';
-import Body from '@/components/body/index.vue';
+import Body from '@/components/body/body-right/index.vue';
+import Label from '@/page/label/index.vue';
 
 Vue.use(Router)
 
@@ -22,9 +23,9 @@ export default new Router({
       component: Login
     },
     {
-      path: '/detail/:id',
-      name: 'detail',
-      component: Detail
+      path: '/articles/:name/:id',
+      name: 'article',
+      component: Article
     },
     {
       path: '/edit',
@@ -40,6 +41,11 @@ export default new Router({
       path: '/tags',
       name: 'tag',
       component: Tag
+    },
+    {
+      path: '/labels/:label?',
+      name: 'label',
+      component: Label
     }
   ]
 })

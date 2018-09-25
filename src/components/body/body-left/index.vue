@@ -1,27 +1,31 @@
 <template>
-    <div class="col-md-4 col-sm-3">
-        <body-left-panel :datas="latestRecommendedArticles" :panpel-type="latestRecommendedArticlesPanelType" :panel-name="latestRecommendedArticlesPanelName"></body-left-panel>
-        <body-left-panel :datas="friendlyLink" :panel-name="friendlyLinkPanelName"></body-left-panel>
+    <div class="col-md-3 col-sm-4">
+        <site-search></site-search>
+        <latest-articles :datas="latestRecommendedArticles"></latest-articles>
+        <social :datas="socials"></social>
+        <friendly-link :datas="friendlyLink"></friendly-link>
     </div>
 </template>
 
 <script>
-import bodyLeftPanel from './bodyLeftPanel.vue';
+import latestArticles from './latestArticles.vue';
+import siteSearch from './siteSearch.vue';
+import friendlyLink from './friendlyLink.vue';
+import social from './social.vue';
 export default {
-     components:{bodyLeftPanel},
+     components:{latestArticles, siteSearch, friendlyLink, social},
      data(){
          return {
-             latestRecommendedArticles:[],
-             latestRecommendedArticlesPanelName: '最新推荐',
-             latestRecommendedArticlesPanelType: '1',
-             friendlyLink:[
-                 {id: '1', title: '我思故我在', url: ''},
-                 {id: '2', title: 'Duke`s blog', url: ''},
-                 {id: '3', title: 'Duke`s blog', url: ''},
-                 {id: '4', title: 'Duke`s blog', url: ''},
-                 {id: '5', title: 'Duke`s blog', url: ''}
+             latestRecommendedArticles: [],
+             friendlyLink: [
+                {id: '1', title: '我思故我在', url: 'http://zeral.top/'},
+                {id: '2', title: 'Duke`s blog', url: 'http://dukehu.top'}
              ],
-             friendlyLinkPanelName: '友情链接'
+             socials: [
+                {id: '1', title: 'github', icon: 'fa fa-github fa-lg', url: 'https://github.com/dukehu', backgroundColor: 'grey'},
+                {id: '2', title: 'git@osc', icon: 'fa fa-git fa-lg', url: 'https://gitee.com/dukehu', backgroundColor: 'grey'},
+                {id: '3', title: 'email', icon: 'fa fa-envelope-o fa-lg', url: '', backgroundColor: 'grey'}
+             ]
          }
      },
      methods: {
@@ -38,5 +42,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
