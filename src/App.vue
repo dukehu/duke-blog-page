@@ -3,7 +3,7 @@
     <!-- 页面的header部分 -->
     <header-page id="headerPage"></header-page>
     <div class="container">
-      <body-page>
+      <body-page :hide-left="hideLeft">
           <router-view/>
       </body-page>
     </div>
@@ -20,6 +20,19 @@ export default {
   name: 'App',
   data() {
     return {
+      hideLeft: false
+    }
+  },
+  watch:{
+    '$route.fullPath': {
+      handler: function(n) {
+        if("/edit" === n) {
+          this.hideLeft = true;
+        } else {
+          this.hideLeft = false;
+        }
+      },
+      immediate: true
     }
   }
 }
@@ -39,5 +52,27 @@ body {
 pre {
     background-color:  #1d1f21;
     color: grey;
+}
+.panel-default > .panel-heading {
+    background-color: white;
+    text-align: center;
+    font-size: 1.5em;
+}
+.panel-default > .panel-footer {
+    background-color: white;
+    padding: 20px;
+    color: #959595;
+}
+.panel {
+    border: 0;
+    font: 400 16px/1.62 Georgia,"Xin Gothic","Hiragino Sans GB","Droid Sans Fallback","Microsoft YaHei",sans-serif;
+}
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+    outline: none;          
 }
 </style>

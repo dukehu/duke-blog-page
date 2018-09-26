@@ -11,7 +11,7 @@
                 {{data.title}}
             </li>
         </ul>
-        <div v-show="datas.length <= 0" style="height:200px;padding: 80px 0;">暂无数据</div>
+        <div v-show="datas.length <= 0" style="height:100px;padding: 40px 0;text-align: center;">暂无数据</div>
     </div>
 </template>
 
@@ -35,14 +35,6 @@ export default {
 </script>
 
 <style scoped>
-.panel-default > .panel-heading {
-    background-color: white;
-    text-align: center;
-    font-size: 1.5em;
-}
-.panel {
-    border: 0;
-}
 </style>
 
 

@@ -2,23 +2,32 @@
     <div>
         <div class="panel panel-default">
             <!-- 博客详情开始 -->
-            <div class="panel-heading">{{title}}</div>
+            <div class="panel-heading" style="fontSize:1.9em">{{title}}</div>
             <div class="panel-body" v-html="content">
-                这是一个基本的面板
             </div>
             <div class="panel-footer">
-                <a class="btn btn-info btn-sm">
+                <!-- <a class="btn btn-sm">
                     <span class="glyphicon glyphicon-chevron-left"></span> 上一篇
                 </a>
-                <a class="btn btn-info btn-sm" style="float:right">
+                <a class="btn btn-sm" style="float:right">
                     下一篇 <span class="glyphicon glyphicon-chevron-right"></span>
+                </a> -->
+                <a class="btn btn-default" 
+                    style="border-radius: 20px;border: 0;">
+                    <i class="fa fa-chevron-left fa-lg"></i>
+                    上一篇
+                </a>
+                <a class="btn btn-default" 
+                    style="border-radius: 20px;border: 0;float:right">
+                    下一篇
+                    <i class="fa fa-chevron-right fa-lg"></i>
                 </a>
             </div> 
             <!-- 博客详情结束 -->
             <back-top></back-top>
         </div>
 
-        <comment :comments="comments"></comment>
+        <!-- <comment :comments="comments"></comment> -->
     </div>
 </template>
 
@@ -71,13 +80,5 @@ export default {
     display: inline-block;
     height: auto;
     max-width: 100%;
-}
-.panel-default > .panel-heading {
-    background-color: white;
-    text-align: center;
-    font-size: 2.6em;
-}
-.panel {
-    border: 0;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="panel panel-default">
-        <div class="panel-heading" style="font-size:20px;">
+        <div class="panel-heading" style="font-size:20px;text-align:left;">
             <span class="glyphicon glyphicon-comment"></span> 评论
             <button class="btn btn-info btn-sm disabled" style="float:right" data-toggle="tooltip" title="敬请期待">
                 提交评论
@@ -11,7 +11,7 @@
                 style="z-index:0" 
                 :subfield=false>
             </mavon-editor>
-            <hr class="simple" color="#6f5499" /> 
+            <hr class="simple"/> 
             <div class="list-group">
                 <div class="list-group-item" v-for="comment in comments" :key="comment.id">
                     <div>
@@ -27,7 +27,7 @@
                     
                     <div style="margin-left: 80px;">
                         <div v-for="c in comment.children" :key="c.id">
-                            <hr class="simple" color="#6f5499"/> 
+                            <hr class="simple"/> 
                             <img src="../../assets/user.png" class="user" style="float:left" />
                             <div style="padding:5px;margin-left: 80px;">
                                 <a>{{c.userName}}</a>&nbsp;&nbsp;&nbsp; <span>{{c.commentDate}}</span>
@@ -70,5 +70,8 @@ export default {
     display: inline-block;
     height: auto;
     max-width: 100%;
+}
+hr{
+    color: "#6f5499";
 }
 </style>

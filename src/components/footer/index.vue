@@ -24,9 +24,9 @@ export default {
 .copyright {
     background: #111;
     font-size: 15px;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    padding: 25px 0;
     border-top: 1px solid #303030;
     color: #666;
+    width: 100%;
 }
 </style>

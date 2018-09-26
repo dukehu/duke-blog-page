@@ -1,15 +1,11 @@
 <template>
-    <div class="panel panel-default" style="padding: 15px 0;">
-        <span style="font-size:2.2em; padding:45px;">2018年</span>
-        <ul style="text-align:left; font-size:1.2em">
-            <li style="cursor:pointer; padding:5px;" 
-                :title="data.title" 
-                v-for="data in datas" 
-                v-bind:key="data.id" >
-                <a @click="toDetail(data.id)" style="color: #337ab7;">{{data.title}}</a>
-            </li>
-        </ul>
-        <div v-show="datas.length <= 0" style="height:200px;padding: 80px 0;">暂无数据</div>
+    <div class="panel panel-default" style="padding: 15px">
+        <h2>共{{tags.length}}个标签</h2>
+        <hr 
+            style="filter: progid:dximagetransform.microsoft.glow(color='#987cb9',strength=10)" 
+            width="100%" color="#987cb9" 
+            size=1 />
+        <a style="cursor:pointer;" v-for="tag in tags" :style="tag.style" :key="tag.id">{{tag.name}} </a>
     </div>
 </template>
 
@@ -17,24 +13,30 @@
 export default {
     data() {
         return {
-            datas:[]
+            tags: []
         }
     },
     methods: {
-         getLatestRecommendedArticles() {
-            this.$axios('get','/api/blog/nologin/archive_query').then(data => {
-                this.datas = data.data;
+        getTags() {
+            this.$axios('get', "/api/blog/nologin/blog_label").then(data => {
+                this.tags = data.data;
+                this.tags.forEach(item => {
+                    item.style = this.randomColor() + ";" + this.randomFontSize();
+                })
             })
-         },
-         toDetail(id) {
-             this.$router.push({
-                path: `/articles/tags/${id}`,
-             })
-         }
-     },
-     created() {
-        this.getLatestRecommendedArticles();
-     }
+        },
+        randomColor() {
+            var colorStr = Math.floor( Math.random() * 0xFFFFFF ).toString( 16 ).toUpperCase();　　   
+            return "color:#" + "000000".substring( 0, 6 - colorStr ) + colorStr; 
+        },
+        randomFontSize() {
+            var fontSizeStr = Math.floor(Math.random() * 26 +15);
+            return "font-size:" + fontSizeStr + "px";
+        }
+    },
+    created() {
+        this.getTags();
+    }
 }
 </script>
 

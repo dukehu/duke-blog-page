@@ -21,8 +21,8 @@ export default {
       backTop() {
         let back = setInterval(() => {
           if(document.body.scrollTop||document.documentElement.scrollTop){
-            document.body.scrollTop-=8;
-            document.documentElement.scrollTop-=8;
+            document.body.scrollTop-=13;
+            document.documentElement.scrollTop-=13;
           }else {
             clearInterval(back)
           }

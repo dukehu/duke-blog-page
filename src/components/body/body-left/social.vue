@@ -36,12 +36,4 @@ export default {
 </script>
 
 <style scoped>
-.panel-default > .panel-heading {
-    background-color: white;
-    text-align: center;
-    font-size: 1.5em;
-}
-.panel {
-    border: 0;
-}
 </style>

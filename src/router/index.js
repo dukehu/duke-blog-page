@@ -3,10 +3,10 @@ import Router from 'vue-router'
 import Article from  '@/page/detail/index.vue';
 import Edit from  '@/page/edit/index.vue';
 import Login from  '@/page/login/index.vue';
-import About from  '@/page/about-me/index.vue';
-import Tag from  '@/page/tag/index.vue';
 import Body from '@/components/body/body-right/index.vue';
-import Label from '@/page/label/index.vue';
+import Tag from '@/page/tag/index.vue';
+import Archive from  '@/page/archive/index.vue';
+import About from  '@/page/about-me/index.vue';
 
 Vue.use(Router)
 
@@ -38,14 +38,14 @@ export default new Router({
       component: About
     },
     {
-      path: '/tags',
-      name: 'tag',
-      component: Tag
+      path: '/archives/',
+      name: 'archive',
+      component: Archive
     },
     {
-      path: '/labels/:label?',
-      name: 'label',
-      component: Label
+      path: '/tags/:tags?',
+      name: 'tag',
+      component: Tag
     }
   ]
 })

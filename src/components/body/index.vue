@@ -1,9 +1,10 @@
 <template>
     <div class="row">
-        <body-left></body-left>
-        <div class="col-md-9 col-sm-4">
+        
+        <div class="col-sm-4" :class="hideLeft ? 'col-md-12' : 'col-md-9'">
             <slot></slot>
         </div>
+        <body-left v-show="!hideLeft"></body-left>
     </div>
 </template>
 
@@ -14,7 +15,10 @@ export default {
     components:{bodyLeft, bodyRight},
     name: 'bodyPage',
     props: {
-
+        hideLeft: {
+            type: Boolean,
+            default: true
+        }
     },
     data() {
         return{

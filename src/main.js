@@ -4,14 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from './axios.js';
-import Popover from 'vue-js-popover';
 
 import 'mavon-editor/src/lib/css/mavon-editor.styl';
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios;
 
-Vue.use(Popover, { tooltip: true })
 new Vue({
   el: '#app',
   router,
