@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-show="!isLogin">
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background:white;">
             <div class="container-fluid"> 
                 <div class="navbar-header">
@@ -20,6 +20,26 @@
                         </li>
                     </ul>
                     <form class="navbar-form navbar-right visible-lg visible-md" role="login">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" >
+                            <img src="../../imgs/user.png"  
+                                style="width:35px; border: 1px solid seagreen;border-radius: 20px;"/>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a style="cursor: pointer;" @click="toManage">
+                                    <i class="fa fa-cog fa-lg" style="padding-right:15px;"></i>后台管理
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a style="cursor: pointer;"><i class="fa fa-sign-out fa-lg" style="padding-right:15px;"></i>退出</a></li>
+                        </ul>
+                        <!-- <a type="submit" 
+                            class="btn btn-default" 
+                            style="border-radius: 20px;border: 0;"
+                            @click="toLogin">
+                            <i class="fa fa-sign-in fa-lg"></i>
+                            登陆
+                        </a> -->
                         <a type="submit" 
                             class="btn btn-default" 
                             style="border-radius: 20px;border: 0;"
@@ -41,6 +61,12 @@
 
 <script>
 export default {
+    props: {
+        isLogin: {
+            type: Boolean,
+            default: false
+        }
+    },
     data() {
         return {
             navbars: [
@@ -61,6 +87,9 @@ export default {
         toLogin() {
             this.$router.push("/login");
         },
+        toManage() {
+            alert(1);
+        }
     }
 }
 </script>

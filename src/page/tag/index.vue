@@ -5,7 +5,7 @@
             style="filter: progid:dximagetransform.microsoft.glow(color='#987cb9',strength=10)" 
             width="100%" color="#987cb9" 
             size=1 />
-        <a style="cursor:pointer;" v-for="tag in tags" :style="tag.style" :key="tag.id">{{tag.name}} </a>
+        <a @click="queryByTag(tag.name)" style="cursor:pointer;" v-for="tag in tags" :style="tag.style" :key="tag.id">{{tag.name}} </a>
     </div>
 </template>
 
@@ -17,6 +17,9 @@ export default {
         }
     },
     methods: {
+        queryByTag(tag) {
+            this.$router.push("/tags/" + tag);
+        },
         getTags() {
             this.$axios('get', "/api/blog/nologin/blog_label").then(data => {
                 this.tags = data.data;

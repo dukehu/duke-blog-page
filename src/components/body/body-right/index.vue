@@ -9,18 +9,27 @@
                     {{article.summary}}
                 </p>
             </div>
-            <div class="panel-footer" style="height:auto;width:100%;">
-                <span class="fa fa-clock-o fa-lg"></span> 
-                {{article.publishDate}} &nbsp;&nbsp;
-                <span v-show="article.labelVMS" class="fa fa-tags fa-lg"></span> 
-                <a style="cursor: pointer; text-decoration: none" v-for="label in article.labelVMS" :key="label.id">{{label.name}} &nbsp;&nbsp;</a>
-                <span class="fa fa-eye fa-lg"></span>
-                {{article.articleViews}}次浏览
+            <div class="panel-footer" style="height:auto;width:100%;overflow: hidden;">
+                <div style="float:left;width:80%;">
+                    <span style="display:inline-block;">
+                        <span class="fa fa-clock-o fa-lg"></span> 
+                        {{article.publishDate}} &nbsp;&nbsp;
+                    </span>
+                    <span style="display:inline-block;">
+                        <span v-show="article.labelVMS" class="fa fa-tags fa-lg"></span> 
+                        <a style="cursor: pointer; text-decoration: none" @click="queryByTag(label.name)"
+                            v-for="label in article.labelVMS" :key="label.id">{{label.name}} &nbsp;&nbsp;</a>
+                    </span>
+                    <span style="display:inline-block;">
+                        <span class="fa fa-eye fa-lg"></span>
+                        {{article.articleViews}}次浏览
+                    </span>
+                </div>
 
-                <!-- <button style="float:right;" 
+                <button style="float:right;" 
                     type="button" 
                     class="btn btn-primary"  
-                    @click="detail(article.labelVMS, article.id)">阅读全文</button> -->
+                    @click="detail(article.labelVMS, article.id)">阅读全文</button>
             </div>
         </div>
         <ul class="pager" style="font-size: 18px;">
@@ -45,20 +54,25 @@ export default {
             pageInfo: {},
             pageSize: 10,
             currentPage: 1,
-            isActive: true
+            isActive: true,
+            tag: '',
+            type: '',
         }
     },
     created() {
-        this.getList();
     },
     methods:{
+        queryByTag(tag) {
+            this.$router.push("/tags/" + tag);
+        },
         getList(){
             this.$axios('get','/api/blog/nologin/blog_article',{
-                page:this.currentPage,
-                size:this.pageSize,
+                type: this.type,
+                tag: this.tag,
+                page: this.currentPage,
+                size: this.pageSize,
             }).then(data => {
                 this.pageInfo = data.data;
-                console.log(this.pageInfo);
             })
         },
         detail(labels, id) {
@@ -74,6 +88,20 @@ export default {
         jumpPage(num) {
             this.currentPage = num;
             this.getList();
+        }
+    },
+    watch: {
+        '$route.fullPath': {
+            handler: function(n) {
+                this.tag = '';
+                this.type ='';
+                let reg = new RegExp("^/tags");
+                if(reg.test(n)) {
+                    this.tag = this.$route.params.tag;
+                }
+                this.getList();
+            },
+            immediate: true
         }
     }
 }

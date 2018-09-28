@@ -9,7 +9,7 @@
                 <hr class="simple"/> 
                 <p style="font-size:1.1em">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;陕西西安人，自2016年10月08日（当时上大四）至今，从事软件行业<span style="color:red">{{workYears}}</span>年，
-                    本人热爱技术，目前在西安工作，英文名：Duke；
+                    本人热爱技术，热爱生活，目前在西安工作，英文名：Duke；
                 </p>
                 <p style="font-size:1.1em">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目前学习中心在java基础、数据结构、数据库优化这块。

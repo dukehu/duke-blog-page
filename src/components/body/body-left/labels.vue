@@ -6,6 +6,7 @@
                 :key="data.id"
                 :style="{ background: data.backgroundColor}"
                 :title="data.name"
+                @click="queryByTag(data.name)"
                 >
                 {{data.name}}
             </a>
@@ -25,6 +26,11 @@ export default {
     },
     data() {
         return {
+        }
+    },
+    methods: {
+        queryByTag(tag) {
+            this.$router.push("/tags/" + tag);
         }
     }
 }

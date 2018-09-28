@@ -1,6 +1,5 @@
 <template>
     <div class="row">
-        
         <div class="col-sm-4" :class="hideLeft ? 'col-md-12' : 'col-md-9'">
             <slot></slot>
         </div>
@@ -10,9 +9,8 @@
 
 <script>
 import bodyLeft from './body-left/index.vue';
-import bodyRight from './body-right/index.vue';
 export default {
-    components:{bodyLeft, bodyRight},
+    components:{bodyLeft},
     name: 'bodyPage',
     props: {
         hideLeft: {

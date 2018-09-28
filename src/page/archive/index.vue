@@ -28,7 +28,7 @@ export default {
          },
          toDetail(id) {
              this.$router.push({
-                path: `/articles/archives/${id}`,
+                path: `/articles/${id}`,
              })
          }
      },

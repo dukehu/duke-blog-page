@@ -11,6 +11,7 @@ import About from  '@/page/about-me/index.vue';
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -23,7 +24,7 @@ export default new Router({
       component: Login
     },
     {
-      path: '/articles/:name/:id',
+      path: '/articles/:name?/:id',
       name: 'article',
       component: Article
     },
@@ -43,9 +44,14 @@ export default new Router({
       component: Archive
     },
     {
-      path: '/tags/:tags?',
-      name: 'tag',
+      path: '/tags',
+      name: 'tags',
       component: Tag
+    },
+    {
+      path: '/tags/:tag?',
+      name: 'tags',
+      component: Body
     }
   ]
 })
