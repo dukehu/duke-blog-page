@@ -15,6 +15,11 @@
                         <span class="fa fa-clock-o fa-lg"></span> 
                         {{article.publishDate}} &nbsp;&nbsp;
                     </span>
+                     <span style="display:inline-block;">
+                        <span v-show="article.typeVMS" class="fa fa-folder-open-o fa-lg"></span> 
+                        <a style="cursor: pointer; text-decoration: none" @click="queryByCategory(type.name)"
+                            v-for="type in article.typeVMS" :key="type.id">{{type.name}} &nbsp;&nbsp;</a>
+                    </span>
                     <span style="display:inline-block;">
                         <span v-show="article.labelVMS" class="fa fa-tags fa-lg"></span> 
                         <a style="cursor: pointer; text-decoration: none" @click="queryByTag(label.name)"
@@ -56,7 +61,7 @@ export default {
             currentPage: 1,
             isActive: true,
             tag: '',
-            type: '',
+            category: '',
         }
     },
     created() {
@@ -65,9 +70,12 @@ export default {
         queryByTag(tag) {
             this.$router.push("/tags/" + tag);
         },
+        queryByCategory(category) {
+            this.$router.push("/categories/" + category);
+        },
         getList(){
             this.$axios('get','/api/blog/nologin/blog_article',{
-                type: this.type,
+                type: this.category,
                 tag: this.tag,
                 page: this.currentPage,
                 size: this.pageSize,
@@ -94,10 +102,14 @@ export default {
         '$route.fullPath': {
             handler: function(n) {
                 this.tag = '';
-                this.type ='';
-                let reg = new RegExp("^/tags");
-                if(reg.test(n)) {
+                this.category ='';
+                let regTag = new RegExp("^/tags");
+                let regCategory = new RegExp("^/categories");
+                if(regTag.test(n)) {
                     this.tag = this.$route.params.tag;
+                }
+                if(regCategory.test(n)) {
+                    this.category = this.$route.params.category;
                 }
                 this.getList();
             },

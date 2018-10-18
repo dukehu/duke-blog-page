@@ -20,7 +20,7 @@
                         </li>
                     </ul>
                     <form class="navbar-form navbar-right visible-lg visible-md" role="login">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" >
+                        <!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#" >
                             <img src="../../imgs/user.png"  
                                 style="width:35px; border: 1px solid seagreen;border-radius: 20px;"/>
                         </a>
@@ -32,14 +32,14 @@
                             </li>
                             <li class="divider"></li>
                             <li><a style="cursor: pointer;"><i class="fa fa-sign-out fa-lg" style="padding-right:15px;"></i>退出</a></li>
-                        </ul>
-                        <!-- <a type="submit" 
+                        </ul> -->
+                        <a type="submit" 
                             class="btn btn-default" 
                             style="border-radius: 20px;border: 0;"
                             @click="toLogin">
                             <i class="fa fa-sign-in fa-lg"></i>
                             登陆
-                        </a> -->
+                        </a>
                         <a type="submit" 
                             class="btn btn-default" 
                             style="border-radius: 20px;border: 0;"
@@ -71,9 +71,10 @@ export default {
         return {
             navbars: [
                 {id: 'index', name: '首页', icon: 'fa fa-home fa-lg', router: '/'},
+                {id: 'categories', name: '分类', icon: 'fa fa-list fa-lg', router: '/categories'}, 
+                {id: 'about', name: '关于我', icon: 'fa fa-user fa-lg', router: '/about'}, 
                 {id: 'archives', name: '归档', icon: 'fa fa-archive fa-lg', router: '/archives'},
                 {id: 'tags', name: '标签', icon: 'fa fa-tags fa-lg', router: '/tags'},
-                {id: 'about', name: '关于我', icon: 'fa fa-user fa-lg', router: '/about'}, 
             ]
         }
     },
@@ -88,7 +89,7 @@ export default {
             this.$router.push("/login");
         },
         toManage() {
-            alert(1);
+            this.$router.push("/manager");
         }
     }
 }

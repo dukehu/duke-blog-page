@@ -5,8 +5,11 @@ import Edit from  '@/page/edit/index.vue';
 import Login from  '@/page/login/index.vue';
 import Body from '@/components/body/body-right/index.vue';
 import Tag from '@/page/tag/index.vue';
+import Category from '@/page/category/index.vue';
 import Archive from  '@/page/archive/index.vue';
 import About from  '@/page/about-me/index.vue';
+import Articles from  '@/page/manage/articles/index.vue';
+import Profile from  '@/page/manage/profile/index.vue';
 
 Vue.use(Router)
 
@@ -18,6 +21,11 @@ export default new Router({
       name: 'body',
       component: Body
     },
+    // {
+    //   path: '/page/:currentPage?',
+    //   name: 'body',
+    //   component: Body
+    // },
     {
       path: '/login',
       name: 'login',
@@ -29,7 +37,7 @@ export default new Router({
       component: Article
     },
     {
-      path: '/edit',
+      path: '/edit/:id?',
       name: 'edit',
       component: Edit
     },
@@ -52,6 +60,26 @@ export default new Router({
       path: '/tags/:tag?',
       name: 'tags',
       component: Body
+    },
+    {
+      path: '/categories',
+      name: 'categories',
+      component: Category
+    },
+    {
+      path: '/categories/:category?',
+      name: 'categories',
+      component: Body
+    },
+    {
+      path: '/manager',
+      name: 'manager',
+      component: Articles
+    },
+    {
+      path: '/manager/profile',
+      name: 'profile',
+      component: Profile
     }
   ]
 })

@@ -2,12 +2,17 @@
   <div id="app">
     <!-- 页面的header部分 -->
     <header-page id="headerPage" :is-login="isLogin"></header-page>
-    <div class="container">
+    <div class="container" v-show="!isManage">
       <body-page :hide-left="hideLeft">
           <router-view/>
       </body-page>
     </div>
-    <footer-page :is-login="isLogin"></footer-page>
+    <div class="container" v-show="isManage">
+      <manage-page>
+          <router-view/>
+      </manage-page>
+    </div>
+    <footer-page :is-login="isLogin" v-show="!isManage"></footer-page>
   </div>
 </template>
 
@@ -16,14 +21,16 @@ import './css/github-md.css';
 import './css/github.min.css';
 import headerPage from './components/header/index.vue';
 import bodyPage from './components/body/index.vue';
+import managePage from './page/manage/body/index.vue';
 import footerPage from './components/footer/index.vue';
 export default {
-  components:{headerPage,bodyPage,footerPage},
+  components:{headerPage,bodyPage,footerPage, managePage},
   name: 'App',
   data() {
     return {
       hideLeft: false,
-      isLogin: false
+      isLogin: false,
+      isManage: false
     }
   },
   methods: {
@@ -42,14 +49,20 @@ export default {
     '$route.fullPath': {
       handler: function(n) {
         this.backTop();
-        if("/edit" === n) {
+        let reg = new RegExp("^/manager");
+        let regEdit = new RegExp("^/edit");
+        if(regEdit.test(n)) {
           this.hideLeft = true;
+          this.isManage = false;
         } else if("/login" === n) {
           this.isLogin = true;
           this.hideLeft = true;
+        } else if(reg.test(n)) {
+          this.isManage = true;
         } else {
           this.hideLeft = false;
           this.isLogin = false;
+          this.isManage = false;
         }
       },
       immediate: true
@@ -70,7 +83,7 @@ body {
   background-color: #ebebeb;
 }
 .panel-default > .panel-heading {
-    background-color: white;
+    background: white;
     text-align: center;
     font-size: 1.5em;
 }

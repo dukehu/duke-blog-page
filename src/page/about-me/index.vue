@@ -40,9 +40,9 @@
                 <ul style="color:grey; font-size:1.3em">
                     <li>编程语言: <span style="padding-left:10px;color:#337ab7">java、html、javaScript、css</span></li>
                     <li>后端框架: <span style="padding-left:10px;color:#337ab7">spring、spring mvc、spring boot、spring cloud、mybatis</span></li>
-                    <li>前端框架:<a style="padding-left:10px;cursor:pointer;">vue、boostrap</a></li>
-                    <li>数 据 库:<a style="padding-left:10px;cursor:pointer;">mysql</a></li>
-                    <li>开发工具:<a style="padding-left:10px;cursor:pointer;">Idea、Eclipse</a></li>
+                    <li>前端框架:<span style="padding-left:10px;cursor:pointer;">vue、boostrap</span></li>
+                    <li>数 据 库:<span style="padding-left:10px;cursor:pointer;">mysql</span></li>
+                    <li>开发工具:<span style="padding-left:10px;cursor:pointer;">Idea、Eclipse</span></li>
                 </ul>
             </div>
         </div>
@@ -58,7 +58,7 @@
                         代码已在
                         <a style="padding-left:5px;cursor:pointer;" href="https://github.com/dukehu" target="view_window">github</a>、
                         <a style="padding-left:5px;cursor:pointer;" href="https://gitee.com/dukehu" target="view_window">码云</a>上进行托管。
-                        <a style="cursor:pointer;">了解更多</a></span>
+                        <a style="cursor:pointer;" href="http://dukehu.top/articles/vue/822e3748-71e2-4593-a9dd-0be075763641" target="view_window">了解更多</a></span>
                         </li>
                     <li>后端权限管理系统: <span style="color:#111; font-size:0.8em">跟博客项目采用了相同的技术，
                         该系统主要对接口后端接口进行保护，采用RBAC用户角色设计方案，主要分为：用户管理、角色管理、前端资源管理、
@@ -67,7 +67,7 @@
                         代码已在
                         <a style="padding-left:5px;cursor:pointer;" href="https://github.com/dukehu" target="view_window">github</a>、
                         <a style="padding-left:5px;cursor:pointer;" href="https://gitee.com/dukehu" target="view_window">码云</a>上进行托管。
-                        <a style="cursor:pointer;">了解更多</a></span></li>
+                        <a style="cursor:pointer;" href="http://dukehu.top/articles/spring%20boot/ed7bfc82-d369-42f8-9f23-5ea64a100810" target="view_window">了解更多</a></span></li>
                 </ul>
             </div>
         </div>

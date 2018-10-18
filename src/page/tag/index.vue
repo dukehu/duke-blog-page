@@ -1,11 +1,18 @@
 <template>
     <div class="panel panel-default" style="padding: 15px">
-        <h2>共{{tags.length}}个标签</h2>
+        <h2>共计{{tags.length}}个标签</h2>
         <hr 
             style="filter: progid:dximagetransform.microsoft.glow(color='#987cb9',strength=10)" 
             width="100%" color="#987cb9" 
             size=1 />
-        <a @click="queryByTag(tag.name)" style="cursor:pointer;" v-for="tag in tags" :style="tag.style" :key="tag.id">{{tag.name}} </a>
+        <a @click="queryByTag(tag.name)" 
+            style="cursor:pointer;" 
+            v-for="tag in tags" 
+            :style="tag.style" :key="tag.id">{{tag.name}} </a>
+        <div style="height: 200px; text-align:center;padding-top: 70px;font-size:1.5em;" 
+            v-show="tags.length <= 0">
+            暂无标签数据
+        </div>
     </div>
 </template>
 

@@ -40,15 +40,21 @@ export default {
                 this.latestRecommendedArticles = data.data;
             })
          },
-         getLables() {
+         getTags() {
             this.$axios('get', "/api/blog/nologin/blog_label").then(data => {
                 this.labels = data.data;
             })
         },
+        getTypes() {
+            this.$axios('get', "/api/blog/nologin/blog_type").then(data => {
+                this.types = data.data;
+            })
+        }
      },
      created() {
         this.getLatestRecommendedArticles();
-        this.getLables();
+        this.getTags();
+        this.getTypes();
      }
 }
 </script>
