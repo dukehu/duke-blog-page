@@ -21,11 +21,6 @@ export default new Router({
       name: 'body',
       component: Body
     },
-    // {
-    //   path: '/page/:currentPage?',
-    //   name: 'body',
-    //   component: Body
-    // },
     {
       path: '/login',
       name: 'login',
@@ -74,12 +69,17 @@ export default new Router({
     {
       path: '/manager',
       name: 'manager',
-      component: Articles
+      components: {
+        manager: Articles
+      }
     },
     {
       path: '/manager/profile',
       name: 'profile',
-      component: Profile
+      component: Profile,
+      components: {
+        manager: Profile
+      }
     }
   ]
 })

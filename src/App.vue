@@ -9,7 +9,7 @@
     </div>
     <div class="container" v-show="isManage">
       <manage-page>
-          <router-view/>
+          <router-view name="manager"/>
       </manage-page>
     </div>
     <footer-page :is-login="isLogin" v-show="!isManage"></footer-page>

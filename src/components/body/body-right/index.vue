@@ -64,8 +64,6 @@ export default {
             category: '',
         }
     },
-    created() {
-    },
     methods:{
         queryByTag(tag) {
             this.$router.push("/tags/" + tag);
@@ -98,22 +96,26 @@ export default {
             this.getList();
         }
     },
+    created() {
+        this.getList();
+    },
     watch: {
-        '$route.fullPath': {
-            handler: function(n) {
+        $route: {
+            handler: function(newVal, oldVal){
                 this.tag = '';
                 this.category ='';
                 let regTag = new RegExp("^/tags");
                 let regCategory = new RegExp("^/categories");
-                if(regTag.test(n)) {
+                if(regTag.test(newVal.path)) {
                     this.tag = this.$route.params.tag;
                 }
-                if(regCategory.test(n)) {
+                if(regCategory.test(newVal.path)) {
                     this.category = this.$route.params.category;
                 }
                 this.getList();
             },
-            immediate: true
+            // 深度观察监听
+            deep: true
         }
     }
 }

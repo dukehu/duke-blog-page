@@ -162,16 +162,17 @@ export default {
         },
         imgAdd(pos, $file){
             var _this = this;
-            console.log(_this);
-            console.log($file);
+            let formData = new FormData();
+            formData.append('file', $file);
+            formData.append('serviceId', 'duke-blog');
             // _this.$refs.md.$imglst2Url([[pos, json.msg]])
-            let serviceId = 'blog-blog';
             // 将图片上传到服务器.
-            this.$axios('post', "/api/storage/upload", {
-                name: this.tag
-            },upload=true).then(data => {
-                this.addTag = false;
-                this.getTags();
+            this.$axios('post', "/api/blog/upload", formData, false, true).then(data => {
+                if(data.status === 200) {
+                    _this.$refs.md.$imglst2Url([[pos, '31321312']])
+                } else {
+                    console.log(data);
+                }
             })
         },
         getTags() {
