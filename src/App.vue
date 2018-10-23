@@ -4,7 +4,7 @@
     <header-page id="headerPage" :is-login="isLogin"></header-page>
     <div class="container" v-show="!isManage">
       <body-page :hide-left="hideLeft">
-          <router-view/>
+          <router-view name="front"/>
       </body-page>
     </div>
     <div class="container" v-show="isManage">

@@ -45,7 +45,7 @@
                             style="border-radius: 20px; border: 0; padding:5px 8px;">
                             <i class="fa fa-plus fa-lg"></i>
                         </a>
-                        <a type="submit"  v-show="addType" @click="saveType"
+                        <a type="submit" v-show="addType" @click="saveType"
                             class="btn btn-primary" 
                             style="border-radius: 20px; border: 0; padding:5px 8px; margin-left:10px;">
                             <i class="fa fa-save fa-lg"></i>
@@ -54,13 +54,15 @@
                 </div>
                 <mavon-editor 
                     style="z-index: 1;margin: 25px 0 25px 15px;" 
-                    @save="save" @imgAdd="imgAdd" 
+                    @save="save" 
+                    @imgAdd="imgAdd" 
                     ref="md" 
-                    :ishljs="true"/>
+                    :ishljs="true"
+                    v-model="article.mdContent"/>
             </form>
             
         </div>
-        <div class="form-group panel-footer" style="float:right;width:100%;">
+        <div class="form-group panel-footer" style="float:right;width:100%;" v-show="!isEdit">
             <a type="submit" 
                 class="btn btn-primary"
                 @click="writeArticle(1)" 
@@ -74,6 +76,21 @@
                 style="border-radius: 20px;border: 0;float:right">
                 <i class="fa fa-book fa-lg"></i>
                 存草稿
+            </a>
+        </div>
+        <div class="form-group panel-footer" style="float:right;width:100%;" v-show="isEdit">
+            <a type="submit" 
+                class="btn btn-primary"
+                @click="saveUpdate" 
+                style="border-radius: 20px;border: 0;float:right">
+                <i class="fa fa-mail-forward fa-lg"></i>
+                保存修改
+            </a>
+            <a type="submit" 
+                class="btn btn-default" 
+                @click="toManager"
+                style="border-radius: 20px;border: 0;float:right">
+                放弃修改
             </a>
         </div>
     </div>
@@ -101,11 +118,29 @@ export default {
                 labelIds: [],
                 typeIds: [],
                 isDraft: 1
-            }
+            },
+            isEdit: false,
+            articleId: ''
         }
     },
     methods: {
+        toManager() {
+            this.$router.push("/manager/");
+        },
         save(mdContent, htmlContent) {
+        },
+        saveUpdate() {
+            let md = this.$refs.md;
+            let navigation = this.getNavigation(md);
+            let mdContent = md.d_value;
+            let htmlContent = md.d_render;
+
+            this.article.mdContent = mdContent;
+            this.article.htmlContent = htmlContent;
+            this.article.navigation = navigation;
+            this.$axios('PUT',"/api/blog/blog_article/update/" + this.articleId, this.article).then(res => {
+               console.log(res.data);
+            });
         },
         writeArticle(isDraft) {
             let md = this.$refs.md;
@@ -130,7 +165,7 @@ export default {
             if (nodes.length) {
                 for (let i = 0; i < nodes.length; i++) {
                     if (reg.exec(nodes[i].tagName)) {
-                    navigationStr += nodes[i].outerHTML;
+                        navigationStr += nodes[i].outerHTML;
                     }
                 }
             }
@@ -165,11 +200,10 @@ export default {
             let formData = new FormData();
             formData.append('file', $file);
             formData.append('serviceId', 'duke-blog');
-            // _this.$refs.md.$imglst2Url([[pos, json.msg]])
             // 将图片上传到服务器.
             this.$axios('post', "/api/blog/upload", formData, false, true).then(data => {
                 if(data.status === 200) {
-                    _this.$refs.md.$imglst2Url([[pos, '31321312']])
+                    _this.$refs.md.$imglst2Url([[pos, data.data]])
                 } else {
                     console.log(data);
                 }
@@ -184,11 +218,41 @@ export default {
             this.$axios('get', "/api/blog/blog_type").then(data => {
                 this.categories = data.data;
             })
+        },
+        getArticles(articleId) {
+            this.$axios('get','/api/blog/blog_article/' + articleId).then(data => {
+                this.article = data.data;
+                let lableVMS = this.article.labelVMS;
+                let typeVMS = this.article.typeVMS;
+                let lableIds = [];
+                let typeIds = [];
+                if(lableVMS) {
+                    lableVMS.forEach(element => {
+                        lableIds.push(element.id);
+                    });
+                }
+                if(typeVMS) {
+                    typeVMS.forEach(element => {
+                        typeIds.push(element.id);
+                    });
+                }
+                this.article.labelIds = lableIds;
+                this.article.typeIds = typeIds;
+            })
         }
     },
     created(){
         this.getTags();
         this.getCategories();
+        this.articleId = this.$route.params.id;
+        if(this.articleId != undefined) {
+            this.isEdit = true;
+            console.log('修改文章：' + this.articleId);
+            this.getArticles(this.articleId);
+        } else {
+            this.isEdit = false;
+            console.log('写文章');
+        }
     }
 }
 </script>

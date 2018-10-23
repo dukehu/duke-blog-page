@@ -19,52 +19,73 @@ export default new Router({
     {
       path: '/',
       name: 'body',
-      component: Body
+      components: {
+        front: Body
+      }
     },
     {
       path: '/login',
       name: 'login',
-      component: Login
+      components: {
+        front: Login
+      }
     },
     {
       path: '/articles/:name?/:id',
       name: 'article',
-      component: Article
+      component: Article,
+      components: {
+        front: Article
+      }
     },
     {
       path: '/edit/:id?',
       name: 'edit',
-      component: Edit
+      components: {
+        front: Edit
+      }
     },
     {
       path: '/about',
       name: 'about',
-      component: About
+      components: {
+        front: About
+      }
     },
     {
       path: '/archives/',
       name: 'archive',
-      component: Archive
+      components: {
+        front: Archive
+      }
     },
     {
       path: '/tags',
       name: 'tags',
-      component: Tag
+      components: {
+        front: Tag
+      }
     },
     {
       path: '/tags/:tag?',
       name: 'tags',
-      component: Body
+      components: {
+        front: Body
+      }
     },
     {
       path: '/categories',
       name: 'categories',
-      component: Category
+      components: {
+        front: Category
+      }
     },
     {
       path: '/categories/:category?',
       name: 'categories',
-      component: Body
+      components: {
+        front: Body
+      }
     },
     {
       path: '/manager',

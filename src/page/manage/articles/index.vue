@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     getList(){
-        this.$axios('get','/api/blog/nologin/blog_article',{
+        this.$axios('get','/api/blog/blog_article',{
             page: this.currentPage,
             size: this.pageSize,
         }).then(data => {
@@ -41,7 +41,7 @@ export default {
         })
     },
     toEdit(id) {
-      this.$router.push("/edit/");
+      this.$router.push("/edit/" + id);
     },
     deleteArticle(id) {
 
