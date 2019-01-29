@@ -3,7 +3,15 @@
         <div class="panel panel-default">
             <!-- 博客详情开始 -->
             <div class="panel-heading" style="padding: 15px 0 20px 0;">
-                <h2>{{article.title}}</h2>
+                <h2>
+                    {{article.title}}
+                    <a style="cursor: pointer; text-decoration: none; font-size:12px;" 
+                        title="点击下载PDF"
+                        @click="download(article.id)">
+                        下载
+                    </a>
+                </h2>
+                
                 <div style="font-size:12px;text-align:center;color:grey">
                     <span style="display:inline-block;">
                         <span class="fa fa-clock-o fa-lg"></span> 
@@ -80,6 +88,18 @@ export default {
         }
     },
     methods: {
+        download(id) {
+            let formDom = document.createElement('form');
+            formDom.method = 'post';
+            formDom.style.display = 'none';
+            formDom.action = 'http://dukehu.top:9000/api/blog/nologin/blog_article/download/pdf/' + id;
+            document.body.appendChild(formDom);
+            formDom.submit();
+            console.log(formDom);
+            setTimeout(() => {
+                document.body.removeChild(formDom)
+            }, 500)
+        },
         anotherArticleDetail(labels, id) {
             // 去详情页，也就是跳转一个路由
             let lable = 'duke';
@@ -122,5 +142,10 @@ export default {
     display: inline-block;
     height: auto;
     max-width: 100%;
+}
+.panel-body >>> p{
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
 }
 </style>

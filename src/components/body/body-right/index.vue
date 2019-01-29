@@ -25,10 +25,10 @@
                         <a style="cursor: pointer; text-decoration: none" @click="queryByTag(label.name)"
                             v-for="label in article.labelVMS" :key="label.id">{{label.name}} &nbsp;&nbsp;</a>
                     </span>
-                    <span style="display:inline-block;">
+                    <!-- <span style="display:inline-block;">
                         <span class="fa fa-eye fa-lg"></span>
                         {{article.articleViews}}次浏览
-                    </span>
+                    </span> -->
                 </div>
 
                 <button style="float:right;" 

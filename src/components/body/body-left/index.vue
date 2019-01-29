@@ -23,7 +23,8 @@ export default {
              latestRecommendedArticles: [],
              friendlyLink: [
                 {id: '1', title: '我思故我在', url: 'http://zeral.top/'},
-                {id: '2', title: 'Duke`s blog', url: 'http://dukehu.top'}
+                {id: '2', title: 'Duke`s blog', url: 'http://dukehu.top'},
+                {id: '3', title: 'MD2PDF-Converting', url: 'http://www.mdtr2pdf.com/index_en.html'},
              ],
              socials: [
                 {id: '1', title: 'github', icon: 'fa fa-github fa-lg', url: 'https://github.com/dukehu', backgroundColor: 'grey'},
