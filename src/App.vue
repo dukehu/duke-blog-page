@@ -1,18 +1,17 @@
 <template>
   <div id="app">
     <!-- 页面的header部分 -->
-    <header-page id="headerPage" :is-login="isLogin"></header-page>
+    <header-page id="headerPage" v-show="needHeader"></header-page>
     <div class="container" v-show="!isManage">
-      <body-page :hide-left="hideLeft">
+      <body-page v-if="!isManage && !isFile" :need-left="needLeft">
           <router-view name="front"/>
       </body-page>
-    </div>
-    <div class="container" v-show="isManage">
-      <manage-page>
+      <manage-page v-if="isManage && !isFile">
           <router-view name="manager"/>
       </manage-page>
+      <file v-if="isFile"></file>
     </div>
-    <footer-page :is-login="isLogin" v-show="!isManage"></footer-page>
+    <footer-page v-show="needFooter"></footer-page>
   </div>
 </template>
 
@@ -22,15 +21,18 @@ import './css/github.min.css';
 import headerPage from './components/header/index.vue';
 import bodyPage from './components/body/index.vue';
 import managePage from './page/manage/body/index.vue';
+import file from './page/file/index.vue';
 import footerPage from './components/footer/index.vue';
 export default {
-  components:{headerPage,bodyPage,footerPage, managePage},
+  components:{headerPage,bodyPage,footerPage, managePage, file},
   name: 'App',
   data() {
     return {
-      hideLeft: false,
-      isLogin: false,
-      isManage: false
+      isManage: false,
+      needHeader: true,
+      needFooter: true,
+      needLeft: true,
+      isFile: false
     }
   },
   methods: {
@@ -49,20 +51,27 @@ export default {
     '$route.fullPath': {
       handler: function(n) {
         this.backTop();
-        let reg = new RegExp("^/manager");
+        let regManage = new RegExp("^/manager");
         let regEdit = new RegExp("^/edit");
         if(regEdit.test(n)) {
-          this.hideLeft = true;
-          this.isManage = false;
+          this.needHeader = true;
+          this.needFooter = false;
+          this.needLeft = false;
         } else if("/login" === n) {
-          this.isLogin = true;
-          this.hideLeft = true;
-        } else if(reg.test(n)) {
+          this.needHeader = false;
+          this.needFooter = false;
+          this.needLeft = false;
+        } else if("/file" === n) {
+          this.needHeader = false;
+          this.needFooter = false;
+          this.isFile = true
+        } else if(regManage.test(n)) {
           this.isManage = true;
         } else {
-          this.hideLeft = false;
-          this.isLogin = false;
           this.isManage = false;
+          this.needHeader = true;
+          this.needFooter = true;
+          this.needLeft = true;
         }
       },
       immediate: true

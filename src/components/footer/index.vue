@@ -1,5 +1,5 @@
 <template>
-    <div class="copyright" v-show="!isLogin">
+    <div class="copyright">
         <div class="container">
             <div class="row" style="text-align:center">
                 <div class="col-sm-12"> 
@@ -16,11 +16,7 @@
 
 <script>
 export default {
-     props: {
-        isLogin: {
-            type: Boolean,
-            default: false
-        }
+    props: {
     },
 }
 </script>

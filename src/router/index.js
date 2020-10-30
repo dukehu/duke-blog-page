@@ -10,6 +10,7 @@ import Archive from  '@/page/archive/index.vue';
 import About from  '@/page/about-me/index.vue';
 import Articles from  '@/page/manage/articles/index.vue';
 import Profile from  '@/page/manage/profile/index.vue';
+import File from  '@/page/file/index.vue';
 
 Vue.use(Router)
 
@@ -100,6 +101,14 @@ export default new Router({
       component: Profile,
       components: {
         manager: Profile
+      }
+    },
+    {
+      path: '/file',
+      name: 'file',
+      component: File,
+      components: {
+        manager: File
       }
     }
   ]

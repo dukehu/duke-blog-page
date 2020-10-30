@@ -1,9 +1,9 @@
 <template>
     <div class="row">
-        <div class="col-sm-4" :class="hideLeft ? 'col-md-12' : 'col-md-9'">
+        <div class="col-sm-4" :class="!needLeft ? 'col-md-12' : 'col-md-9'">
             <slot></slot>
         </div>
-        <body-left v-show="!hideLeft"></body-left>
+        <body-left v-show="needLeft"></body-left>
     </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
     components:{bodyLeft},
     name: 'bodyPage',
     props: {
-        hideLeft: {
+        needLeft: {
             type: Boolean,
             default: true
         }

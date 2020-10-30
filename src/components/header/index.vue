@@ -1,5 +1,5 @@
 <template>
-    <div v-show="!isLogin">
+    <div>
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background:white;">
             <div class="container-fluid"> 
                 <div class="navbar-header">
@@ -62,10 +62,6 @@
 <script>
 export default {
     props: {
-        isLogin: {
-            type: Boolean,
-            default: false
-        }
     },
     data() {
         return {
