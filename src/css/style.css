@@ -1,4 +1,12 @@
-a,button,input {
+a {
+    outline: none;
+}
+
+button {
+    outline: none;
+}
+
+input {
     outline: none;
 }
 
