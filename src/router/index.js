@@ -5,6 +5,15 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/login',
+    name: 'login',
+    meta: {
+      keepAlive: true,
+      requireAuth: false
+    },
+    component: () => import('@/page/common/login/login.vue') // 主内容
+  },
+  {
     path: '*',
     name: '404',
     meta: {

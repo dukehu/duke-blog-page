@@ -26,6 +26,7 @@ export default {
 
 <style scoped>
 .block {
+    text-align: center;
     width: 100%;
     height: calc(100vh);
 }

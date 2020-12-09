@@ -17,23 +17,10 @@
                     <ul class="nav navbar-nav" style="display: inline-block;float: none;">
                         <li @click="goPage(navbar.router)" style="cursor:pointer"
                             v-for="navbar in navbars" :key="navbar.id">
-                            <a><span :class="navbar.icon"></span>&nbsp;{{navbar.name}}</a>
+                            <a><i :class="navbar.icon"></i>&nbsp;{{navbar.name}}</a>
                         </li>
                     </ul>
                     <form class="navbar-form navbar-right visible-lg visible-md" role="login">
-                        <!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#" >
-                            <img src="../../imgs/user.png"
-                                style="width:35px; border: 1px solid seagreen;border-radius: 20px;"/>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a style="cursor: pointer;" @click="toManage">
-                                    <i class="fa fa-cog fa-lg" style="padding-right:15px;"></i>后台管理
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li><a style="cursor: pointer;"><i class="fa fa-sign-out fa-lg" style="padding-right:15px;"></i>退出</a></li>
-                        </ul> -->
                         <a type="submit"
                             class="btn btn-default"
                             style="border-radius: 20px;border: 0;"
@@ -62,6 +49,8 @@
 
 <script>
 export default {
+  components: {
+  },
   props: {
   },
   data () {

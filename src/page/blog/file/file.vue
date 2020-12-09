@@ -179,7 +179,7 @@ export default {
       let self = this
       this.calculateMD5(file, function (md5) {
         // 先根据md5查询是否上传过该文件
-        self.$axios('get', '/api/storage/nologin/file/' + md5)
+        self.$axios('get', '/api/storage/file/' + md5)
           .then(res => {
             if (res.status === 200) {
               if (res.data) {
@@ -199,7 +199,7 @@ export default {
     },
     // 秒传
     secondUpload (fileName, md5, serviceId, self) {
-      self.$axios('post', '/api/storage/nologin/file/secondUpload', {
+      self.$axios('post', '/api/storage/file/secondUpload', {
         fileName: fileName,
         md5: md5,
         serviceId: serviceId
@@ -264,12 +264,12 @@ export default {
         form.append('fileName', chunk.fileName)
         form.append('serviceId', chunk.serviceId)
         axiosList.push(
-          self.$axios('post', '/api/storage/nologin/upload/chunk', form, false, true)
+          self.$axios('post', '/api/storage/upload/chunk', form, false, true)
         )
       })
       // 所有切片上传成功后合并
       Promise.all(axiosList).then(res => {
-        self.$axios('post', '/api/storage/nologin/file/merge', {
+        self.$axios('post', '/api/storage/file/merge', {
           fileName: file.name,
           fileSize: fileSize,
           md5: md5,
@@ -309,6 +309,7 @@ export default {
     // 上传失败回调函数
     uploadErrorCallBack (err, file, fileList) {
       console.log(err)
+      this.pdf2WordLoading.close()
     },
     // 文件上传之前的回调函数
     beforeUploadCallBack (file) {
@@ -365,7 +366,7 @@ export default {
       let formDom = document.createElement('form')
       formDom.method = 'post'
       formDom.style.display = 'none'
-      formDom.action = backHost + '/api/storage/nologin/file_download/' + row.id
+      formDom.action = backHost + '/api/storage/file_download/' + row.id
       document.body.appendChild(formDom)
       formDom.submit()
       console.log(formDom)
@@ -375,7 +376,7 @@ export default {
     },
     // 获取文件列表
     getFileList () {
-      this.$axios('get', '/api/storage/nologin/files', {serviceId: 'duke-storage'}).then(data => {
+      this.$axios('get', '/api/storage/files', {serviceId: 'duke-storage'}).then(data => {
         this.files = data.data.list
       })
     }

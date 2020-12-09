@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+  <div class="container">
     <div class="row" style="margin: 0">
         <div class="col-sm-4 col-md-12">
             <Header></Header>
@@ -11,7 +11,7 @@
             </div>
         </div>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>

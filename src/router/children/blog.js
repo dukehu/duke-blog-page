@@ -77,7 +77,7 @@ export default [
     path: '/file',
     name: 'file',
     meta: {
-      requireAuth: false
+      requireAuth: true
     },
     component: () => import('@/page/blog/file/file.vue')
   }

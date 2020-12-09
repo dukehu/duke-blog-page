@@ -113,7 +113,7 @@ export default {
     toPdf () {
       let self = this
       self.url = ''
-      self.$axios('get', '/api/storage/nologin/toPdfFile', {serviceId: 'duke-storage', fileId: self.file.id}).then(data => {
+      self.$axios('get', '/api/storage/toPdfFile', {serviceId: 'duke-storage', fileId: self.file.id}).then(data => {
         self.url = backHost + '/api/storage/' + data.data
       })
     },

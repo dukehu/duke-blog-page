@@ -5,7 +5,7 @@ export default {
   name: '',
   component: () => import('@/page/index.vue'), // 主内容
   meta: {
-    requireAuth: true
+    requireAuth: false
   },
   children: [
     ...auth
