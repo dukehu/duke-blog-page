@@ -80,5 +80,13 @@ export default [
       requireAuth: true
     },
     component: () => import('@/page/blog/file/file.vue')
+  },
+  {
+    path: '/edit',
+    name: 'edit',
+    meta: {
+      requireAuth: true
+    },
+    component: () => import('@/page/blog/edit/edit.vue')
   }
 ]

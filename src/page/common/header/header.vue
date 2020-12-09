@@ -21,20 +21,23 @@
                         </li>
                     </ul>
                     <form class="navbar-form navbar-right visible-lg visible-md" role="login">
-                        <a type="submit"
+                        <a v-if="loginStatus === 0" type="submit"
                             class="btn btn-default"
                             style="border-radius: 20px;border: 0;"
                             @click="toLogin">
                             <i class="fa fa-sign-in fa-lg"></i>
                             登陆
                         </a>
-                        <a type="submit"
-                            class="btn btn-default"
-                            style="border-radius: 20px;border: 0;"
-                            @click="edit">
-                            <i class="fa fa-paint-brush fa-lg"></i>
-                            写文章
-                        </a>
+                        <el-dropdown split-button size="small" trigger="click">
+                          Duke
+                          <el-dropdown-menu slot="dropdown">
+                            <el-dropdown-item icon="el-icon-user">个人中心</el-dropdown-item>
+                            <el-dropdown-item icon="el-icon-setting">个人设置</el-dropdown-item>
+                            <el-dropdown-item icon="el-icon-edit" @click.native="edit">写文章</el-dropdown-item>
+                            <el-dropdown-item icon="el-icon-files" @click.native="toFileManager">文件管理</el-dropdown-item>
+                            <el-dropdown-item @click.native="logout" divided>退出登陆</el-dropdown-item>
+                          </el-dropdown-menu>
+                        </el-dropdown>
                     </form>
                 </div>
                 <a href="https://github.com/dukehu" target="_blank">
@@ -61,10 +64,21 @@ export default {
         {id: 'about', name: '关于我', icon: 'fa fa-user fa-lg', router: '/about'},
         {id: 'archives', name: '归档', icon: 'fa fa-archive fa-lg', router: '/archives'},
         {id: 'tags', name: '标签', icon: 'fa fa-tags fa-lg', router: '/tags'}
-      ]
+      ],
+      loginStatus: 1
     }
   },
   methods: {
+    // 推出登陆
+    logout () {
+
+    },
+    // 文件管理
+    toFileManager () {
+      this.$router.push('/file')
+    },
+    // 文章管理
+    toArticleManager () {},
     edit () {
       this.$router.push('/edit')
     },
@@ -87,5 +101,14 @@ export default {
     text-align: center;
     font-size: 16px;
     position: fixed;
+}
+.el-dropdown {
+  vertical-align: top;
+}
+.el-dropdown + .el-dropdown {
+  margin-left: 15px;
+}
+.el-icon-arrow-down {
+  font-size: 12px;
 }
 </style>
