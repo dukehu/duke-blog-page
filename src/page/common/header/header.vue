@@ -31,8 +31,8 @@
                         <el-dropdown split-button size="small" trigger="click">
                           Duke
                           <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item icon="el-icon-user">个人中心</el-dropdown-item>
-                            <el-dropdown-item icon="el-icon-setting">个人设置</el-dropdown-item>
+                            <el-dropdown-item icon="el-icon-user" @click.native="toProfile">个人中心</el-dropdown-item>
+                            <el-dropdown-item icon="el-icon-setting" @click.native="toFileManager">个人设置</el-dropdown-item>
                             <el-dropdown-item icon="el-icon-edit" @click.native="edit">写文章</el-dropdown-item>
                             <el-dropdown-item icon="el-icon-files" @click.native="toFileManager">文件管理</el-dropdown-item>
                             <el-dropdown-item @click.native="logout" divided>退出登陆</el-dropdown-item>
@@ -69,6 +69,10 @@ export default {
     }
   },
   methods: {
+    // 个人中心
+    toProfile () {
+      this.$router.push('/profile')
+    },
     // 推出登陆
     logout () {
 

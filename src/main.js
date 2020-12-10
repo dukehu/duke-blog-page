@@ -14,9 +14,19 @@ import VueCookies from 'vue-cookies'
 // require('video.js/dist/video-js.css')
 // require('vue-video-player/src/custom-theme.css')
 
+// vxe-table
+import 'xe-utils'
+import VXETable from 'vxe-table'
+import 'vxe-table/lib/style.css'
+
+// 自定义组件
+import CustomComponents from './components/index.js'
+
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 Vue.use(ElementUI)
+Vue.use(VXETable)
+Vue.use(CustomComponents)
 // Vue.use(VideoPlayer)
 
 router.beforeEach((to, from, next) => {

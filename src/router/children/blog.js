@@ -88,5 +88,13 @@ export default [
       requireAuth: true
     },
     component: () => import('@/page/blog/edit/edit.vue')
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    meta: {
+      requireAuth: true
+    },
+    component: () => import('@/page/common/profile/profile.vue')
   }
 ]
